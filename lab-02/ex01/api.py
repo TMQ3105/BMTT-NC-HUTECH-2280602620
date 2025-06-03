@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-
 from cipher.playfair import PlayfairCipher
 from cipher.railfence import RailFenceCipher
 from cipher.caesar import CaesarCipher
