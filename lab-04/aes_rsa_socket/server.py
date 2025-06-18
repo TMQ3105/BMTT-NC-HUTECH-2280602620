@@ -2,13 +2,9 @@ from Crypto.Cipher import AES, PKCS1_OAEP
 from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
 from Crypto.Util.Padding import pad, unpad
-
-
 import socket
 import threading
 import hashlib
-
-
 
 # Initialize server socket
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -66,16 +62,12 @@ def handle_client(client_socket, client_address):
             if client != client_socket:
                 encrypted = encrypt_message(key, decrypted_message)
                 client.send(encrypted)
-
         if decrypted_message == "exit":
             break
-
     clients.remove((client_socket, aes_key))
     client_socket.close()
     print(f"Connection with {client_address} closed")
-
-
-# Accept and handle client connections
+        
 while True:
     client_socket, client_address = server_socket.accept()
     client_thread = threading.Thread(target=handle_client, args=(client_socket, client_address))
